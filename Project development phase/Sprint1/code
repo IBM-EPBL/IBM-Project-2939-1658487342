@@ -1,0 +1,54 @@
+          import pandas as pd
+
+          import numpy as np
+
+          import matplotlib.pyplot as plt
+
+ 
+
+          dv=pd.read_excel(r"Crude Oil Prices Daily.csv”)
+      data.head()
+          
+          dv.isnull().any()
+          dv.isnull().sum()
+          dv.dropna(axis=0,inplace=True)
+          dv.isnull().sum()
+          dv_oil=data.reset_index()['Closing Value']
+          dv_oil
+         from sklearn.preprocessing import MinMaxScaler
+         scalar=MinMaxScaler(feature_range=(0,1))
+         data_oil=scalar.fit_transform(np.array(data_oil).reshape(-1,1))
+      
+         plt.plot(dv_oil)
+     
+        training_size=int(len(dv_oil)*0.65)
+        test_size=len(dv_oil)-training_size
+        train_data,test_data=data_oil[0:training_size,:],dv_oil
+        [training_size:len(dv_oil),:1]
+        training_size,test_size
+        train_data.shape
+ 
+     
+       def create_dataset (dataset, time_step=1):
+       dataX, dataY = [], []
+ 
+      for i in range(len(dataset)-time_step-1):
+ 
+      a = dataset[i:(i+time_step), 0] 
+      dataX.append(a)
+      dataY.append(dataset[i + time_step, 0])
+ 
+     return np.array(dataX),np.array(dataY)
+     time_step = 10
+ 
+    X_train, y_train=create_dataset(train_data,time_step)
+ 
+    X_test, y_test = create_dataset(test_data,time_step)
+ 
+   print(X_train.shape),print(y_train.shape)
+   print(X_test.shape),print(y_test.shape)
+   X_train
+   X_train.shape
+   X_train=X_train.reshape(X_train.shape[0],X_train.shape[1],1)
+   X_test=X_test.reshape(X_test.shape[0],X_test.shape[1],1)
+ 
