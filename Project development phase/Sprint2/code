@@ -1,0 +1,217 @@
+import pandas as pd
+
+import numpy as np
+
+import matplotlib.pyplot as pl
+
+data=pd.read_excel(r"C:\Users\madhu suresh\Downloads\Crude Oil Prices Daily.xlsx")
+
+data
+
+data.isnull().any()
+
+data.isnull().sum()
+
+data.dropna(axis=0,inplace=True)
+
+data.isnull().sum()
+
+data_oil=data.reset_index()['Closing Value']
+
+data_oil
+
+from sklearn.preprocessing import MinMaxScaler
+
+scaler=MinMaxScaler(feature_range=(0,1))
+
+data_oil=scaler.fit_transform(np.array(data_oil).reshape(-1,1))
+
+plt.plot(data_oil)
+
+training_size=int(len(data_oil)*0.65)
+
+test_size=len(data_oil)-training_size
+
+train_data,test_data=data_oil[0:training_size:],data_oil[training_size:len(data_oil),:1]
+
+training_size,test_size
+
+train_data.shape
+
+def create_dataset(dataset,time_step=1):
+
+    dataX,dataY=[],[]
+
+    for i in range(len(dataset)-time_step-1):
+
+        a=dataset[i:(i+time_step),0]
+
+        dataX.append(a)
+
+        dataY.append(dataset[i+time_step,0])
+
+    return np.array(dataX),np.array(dataY)
+
+time_step=10
+
+x_train,y_train=create_dataset(train_data,time_step)
+
+x_test,ytest=create_dataset(test_data,time_step
+
+print(x_test.shape)
+
+print(ytest.shape)
+
+print(x_train.shape),print(y_train.shape)
+
+x_train
+
+x_train=x_train.reshape(x_train.shape[0],x_train.shape[1],1)
+
+x_test=x_test.reshape(x_test.shape[0],x_train.shape[1],1)
+
+from tensorflow.keras.models import Sequential
+
+from tensorflow.keras.layers import Dense
+
+from tensorflow.keras.layers import LSTM
+
+model=Sequential()
+
+model.add(LSTM(50,return_sequences=True,input_shape=(10,1)))
+
+model.add(LSTM(50,return_sequences=True))
+
+model.add(LSTM(50))
+
+model.add(Dense(1))
+
+model.summary()
+
+model.compile(loss='mean_squared_error',optimizer='adam')
+
+ 
+
+model.fit(x_train,y_train,validation_data=(x_test,ytest),epochs=50,batch_size=64,verbose=1)
+
+train_predict = model.predict(x_train)
+
+test_predict = model.predict(x_test)
+
+# model evaluation
+
+train_predict=scaler.inverse_transform(train_predict)
+
+test_predict=scaler.inverse_transform(test_predict)
+
+import math
+
+from sklearn.metrics import mean_squared_error
+
+math.sqrt(mean_squared_error(y_train,train_predict))
+
+from tensorflow.keras.models import load_model
+
+model.save("crude_oil.h5")
+
+look_back=10
+
+trainpredictplot=np.empty_like(data_oil)
+
+trainpredictplot[:, :]=np.nan
+
+trainpredictplot[look_back:len(train_predict)+look_back, :]=train_predict
+
+testpredictplot=np.empty_like(data_oil)
+
+testpredictplot[:, :]=np.nan
+
+testpredictplot[len(train_predict)+(look_back*2)+1:len(data_oil)-1, :]=test_predict
+
+plt.plot(scaler.inverse_transform(data_oil))
+
+plt.plot(trainpredictplot)
+
+plt.plot(testpredictplot)
+
+plt.show()
+
+len(test_data)
+
+x_input=test_data[2866:].reshape(1,-1)
+
+x_input.shape
+
+temp_input=list(x_input)
+
+temp_input=temp_input[0].tolist()
+
+temp_input
+
+lst_output=[]
+
+n_steps=10
+
+i=0
+
+while (i<10):
+
+    if(len(temp_input)>10):
+
+        x_input=np.array(temp_input[1:])
+
+        print("{} day input {}".format(i,x_input))
+
+        x_input=x_input.reshape(1,-1)
+
+        x_input=x_input.reshape(1,n_steps,1)
+
+        yhat=model.predict(x_input,verbose=0)
+
+        print("{} day output {}".format(i,yhat))
+
+        temp_input.extend(yhat[0].tolist())
+
+        temp_input=temp_input[1:]
+
+        lst_output.extend(yhat.tolist())
+
+        i=i+1
+
+    else:
+
+        x_input=x_input.reshape((1,n_steps,1))
+
+        yhat=model.predict(x_input,verbose=0)
+
+        print(yhat[0])
+
+        temp_input.extend(yhat[0].tolist())
+
+        print(len(temp_input))
+
+        lst_output.extend(yhat.tolist())
+
+        i=i+1
+
+day_new=np.arange(1,11)
+
+day_pred=np.arange(11,21)
+
+len(data_oil)
+
+plt.plot(day_new,scaler.inverse_transform(data_oil[8206:]))
+
+plt.plot(day_pred,scaler.inverse_transform(lst_output))
+
+df3=data_oil.tolist()
+
+df3.extend(lst_output)
+
+plt.plot(df3[8100:])
+
+df3=scaler.inverse_transform(df3).tolist()
+
+plt.plot(df3)
+
+ 
