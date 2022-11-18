@@ -1,0 +1,225 @@
+                        INDEX PAGE
+         
+         
+<html>
+
+<head>
+    <title>CRUDE OIL PRICE PREDICTION </title>
+    <style>
+        .main_conat_one {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main_conat {
+            position: absolute;
+            top: 1px;
+
+
+
+        }
+
+        .button1 {
+            background-color: black;
+            color: white;
+            border: 9px solid black;
+            text-align: center;
+            font-size: 16px;
+            margin-top: -85px;
+            margin-left: 650px;
+
+        }
+
+        .title{
+            width: 272px;
+            text-align:justify;
+            margin-left: 86px;
+            width: 500px;
+            line-height: 32px;
+            font-size: 20px;
+        }
+        h1{
+    margin-left: 120px;
+}
+    </style>
+</head>
+
+<body>
+    <div class="main_conat_one">
+        <img src="https://c4.wallpaperflare.com/wallpaper/584/698/522/building-oil-rig-dbmsc-steel-wallpaper-preview.jpg"
+            style="width:1500px;height:600px;">
+        <div class="main_conat">
+            <h1  > About Crude Oil Price</h1>
+            <p class="title"> &emsp;&emsp;Crude oil is a naturally occurring liquid petroleum product composed of hydrocarbon deposits and other
+                organic
+                materials formed from the remains of animals and plants that lived millions of years ago. These
+                organisms were
+                covered by layers of sand, silt, and rock, subject to heat and pressure, and eventually turned into a
+                type of
+                fossil fuel that is refined into usable products including gasoline, diesel, liquefied petroleum gases,
+                and
+                feedstock for the petrochemical industry.
+
+                Crude oil is a nonrenewable resource, which means that it can't be replaced naturally at the rate we
+                consume it
+                and is, therefore, a limited resource.</p>
+
+          <a href="../web.html">
+            <button class="button button1">Prediction</button>
+          </a>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
+                               
+                               
+                               
+                               WEB PAGE
+                               
+  
+<html>
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+div.header{
+  top: 0;
+  position: fixed;
+  padding-left: 400px;}
+div.header1{
+  top:20;
+  position: fixed;
+  padding-left: 490px;
+}
+
+*{
+  margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+	text-decoration:none;
+	font-family:montserrat;
+}
+.navbar
+{
+margin-left:10px;
+padding:10px;
+background-color:hsl(180, 96%, 52%);
+font-family:'Roboto',sans-serif;
+font-style: italic;
+border-radius:30px;
+font-size:30px;
+box-sizing: border-box;
+max-width: 18%;
+text-align:center;
+}
+a:hover{
+background-color:black;
+color:white;
+border-radius:16px;0
+font-size:30px;
+padding:10px;
+}
+
+body
+{
+background-image:url('https://wallpapercave.com/wp/wp9553498.jpg');
+background-position: center;
+font-family:sans-serif;
+background-size:cover;
+margin-top:40px;
+}
+
+.main input[type="text"],.main input[type="text"],.main input[type="text"],.main input[type="text"],.main input[type="text"],.main input[type="text"],.main input[type="text"]{
+	border:0;
+	background:none;
+	display:block;
+	margin:20px auto;
+	text-align:center;
+	border:2px solid white;
+	padding:15px 3px;
+	width:400px;
+	outline:none;
+	color:white;
+	border-radius:100px;
+	transition:0.25s;
+	font-size:20;
+	
+}
+.bor{
+border:0;
+	background:none;
+	display:block;
+	margin:20px auto;
+	text-align:center;
+	border:2px solid white;
+	padding:10px 3px;
+	width:500px;
+	outline:none;
+	color:black;
+	transition:0.25s;
+}
+.main input[type="text"]:focus,.main input[type="text"]:focus,.main input[type="text"]:focus,.main input[type="text"]:focus,.main input[type="text"]:focus,.main input[type="text"]:focus,.main input[type="text"]:focus{
+	width:280px;
+	border-color:black;
+}
+.logbtn{
+	display:block;
+	width:35%;
+	height:50px;
+	border:none;
+	border-radius:24px;
+	background:linear-gradient(120deg,#3498db,#8e44ad,#3498db,#8e44ad);
+	background-size:200%;
+	color:black;
+	outline:none;
+	cursor:pointer;
+	transition:.5s;
+	font-size:25;
+}
+.logbtn:hover{
+	background-center;
+}
+
+input::placeholder{
+	color:white;
+}
+.bottom-text{
+	margin-top:60px;
+	text-align:center;
+	font-size:13px;
+
+}
+
+</style>
+<body>
+<div class="navbar">
+<a href="index.html">Home</a>
+<br>
+</div>
+	<center><div><font color="Powderblue" font-family="sans-serif" size=8 ><b>Crude Oil Price Prediction</b></font></div></center>
+	
+	
+<br><br><br><br>
+	<form class="main" action="/login" method="post">
+		<br>
+		<font size=20><input type="text" name="year1" placeholder="Enter previous 10th day price"/></font>
+		<font size=20><input type="text" name="year2" placeholder="Enter previous 9th day price"/></font>
+		<font size=20><input type="text" name="year3" placeholder="Enter previous 8th day price"/></font>
+		<font size=20><input type="text" name="year4" placeholder="Enter previous 7th day price"/></font>
+		<font size=20><input type="text" name="year5" placeholder="Enter previous 6th day price"/></font>
+		<font size=20><input type="text" name="year6" placeholder="Enter previous 5th day price"/></font>
+		<font size=20><input type="text" name="year7" placeholder="Enter previous 4th day price"/></font>
+		<font size=20><input type="text" name="year8" placeholder="Enter previous 3th day price"/></font>
+		<font size=20><input type="text" name="year9" placeholder="Enter previous 2nd day price"/></font>
+		<font size=20><input type="text" name="year10"placeholder="Enter previous 1st day price"/></font>
+		<center><input type="submit" class="logbtn" value="Predict"></center>
+		<div class="bor"><b><font color="white" size=5>Next Day Price</font></b></div>
+	</form>
+</div>
+</body>
+
+</html>                             
